@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CustomView</string>
+
+    <string name="ji_ke_like_str">即刻点赞</string>
+    <string name="like_ok_str">确定</string>
+
+</resources>

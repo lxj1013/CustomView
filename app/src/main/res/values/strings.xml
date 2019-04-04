@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CustomView</string>
+
+    <string name="draw_text_test" translatable="false">drawTextTest</string>
+    <string name="ji_ke_like_str">jiKeLike</string>
+    <string name="like_ok_str">Ok</string>
 </resources>
