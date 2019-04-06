@@ -4,11 +4,13 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import cn.com.lxj.customview.R;
 import cn.com.lxj.customview.view.jike.LikeClickListener;
@@ -57,7 +59,12 @@ public class JiKeLikeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String str = mLikeEdit.getText().toString();
-                mLikeCountView.setCount(Integer.valueOf(str));
+                try {
+                    mLikeCountView.setCount(Integer.valueOf(str));
+                } catch (Exception e) {
+                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }
