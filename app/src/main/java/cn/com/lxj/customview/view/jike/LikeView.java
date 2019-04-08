@@ -4,10 +4,12 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.support.annotation.IdRes;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -38,6 +40,7 @@ public class LikeView extends View {
     private Paint mPaint;
 
     private Bitmap mLikedBitmap;
+    private Bitmap mLikedShiningBitmap;
     private Bitmap mUnLikedBitmap;
     private float mScale = 1.0f;
     private boolean isLike = false;
@@ -67,8 +70,17 @@ public class LikeView extends View {
         mViewHeight = 0;
 
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mLikedBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_messages_like_selected);
-        mUnLikedBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_messages_like_unselected);
+        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.LikeView, defStyle, 0);
+
+        int likedSrc = a.getResourceId(R.styleable.LikeView_liked_src, R.drawable.ic_messages_like_selected);
+        int likedShiningSrc = a.getResourceId(R.styleable.LikeView_liked_shining_src, R.drawable.ic_messages_like_selected_shining);
+        int unLikedSrc = a.getResourceId(R.styleable.LikeView_un_liked_src, R.drawable.ic_messages_like_unselected);
+
+        setLikedBitmap(likedSrc);
+        setLikedShiningBitmap(likedShiningSrc);
+        setUnLikedBitmap(unLikedSrc);
+
+        a.recycle();
 
         scaleMinAnim = ObjectAnimator.ofFloat(this, "scale", 1.0f, SCALE_MIN);
         scaleMinAnim.setDuration(SCALE_DURATION);
@@ -89,7 +101,7 @@ public class LikeView extends View {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        setMeasuredDimension(measureWidth(widthMeasureSpec, DEFAULT_WIDTH), measureHeight(heightMeasureSpec,DEFAULT_HEIGHT));
+        setMeasuredDimension(measureWidth(widthMeasureSpec, DEFAULT_WIDTH), measureHeight(heightMeasureSpec, DEFAULT_HEIGHT));
     }
 
     @Override
@@ -107,16 +119,19 @@ public class LikeView extends View {
         canvas.scale(mScale, mScale);
 //        canvas.drawBitmap(mLikedBitmap, (-mLikedBitmap.getWidth()) >> 1, (-mLikedBitmap.getHeight()) >> 1, mPaint);
 //        canvas.drawBitmap(mUnLikedBitmap, (-mUnLikedBitmap.getWidth()) >> 1, (-mUnLikedBitmap.getHeight()) >> 1, mPaint);
-
+        mPaint.setAlpha(255);
         if (isLike) {
             if (isScaleMin) {
                 canvas.drawBitmap(mUnLikedBitmap, (-mUnLikedBitmap.getWidth()) >> 1, (-mUnLikedBitmap.getHeight()) >> 1, mPaint);
             } else {
                 canvas.drawBitmap(mLikedBitmap, (-mLikedBitmap.getWidth()) >> 1, (-mLikedBitmap.getHeight()) >> 1, mPaint);
+                canvas.drawBitmap(mLikedShiningBitmap, (-mLikedShiningBitmap.getWidth()) >> 1, (-mLikedShiningBitmap.getHeight() - mLikedBitmap.getHeight()) >> 1, mPaint);
             }
         } else {
             if (isScaleMin) {
                 canvas.drawBitmap(mLikedBitmap, (-mLikedBitmap.getWidth()) >> 1, (-mLikedBitmap.getHeight()) >> 1, mPaint);
+                mPaint.setAlpha((int) (mScale * 255 * 5 - 255 * 4));
+                canvas.drawBitmap(mLikedShiningBitmap, (-mLikedShiningBitmap.getWidth()) >> 1, (-mLikedShiningBitmap.getHeight() - mLikedBitmap.getHeight()) >> 1, mPaint);
             } else {
                 canvas.drawBitmap(mUnLikedBitmap, (-mUnLikedBitmap.getWidth()) >> 1, (-mUnLikedBitmap.getHeight()) >> 1, mPaint);
             }
@@ -163,6 +178,17 @@ public class LikeView extends View {
         return true;
     }
 
+    public void setLikedBitmap(@IdRes int likedSrc) {
+        mLikedBitmap = BitmapFactory.decodeResource(getResources(), likedSrc);
+    }
+
+    public void setLikedShiningBitmap(@IdRes int likedShiningSrc) {
+        mLikedShiningBitmap = BitmapFactory.decodeResource(getResources(), likedShiningSrc);
+    }
+
+    public void setUnLikedBitmap(@IdRes int unLikedSrc) {
+        mUnLikedBitmap = BitmapFactory.decodeResource(getResources(), unLikedSrc);
+    }
 
     public void setLikeClickListener(LikeClickListener likeClickListener) {
         mLikeClickListener = likeClickListener;

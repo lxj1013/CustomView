@@ -96,13 +96,13 @@ public class LikeCountView extends View implements LikeClickListener {
 
     @Override
     public void onLikeDown() {
-        Log.e(TAG, "onLikeDown: ");
+//        Log.e(TAG, "onLikeDown: ");
 //        setCount(count);
     }
 
     @Override
     public void onLikeUp(boolean isUp) {
-        Log.e(TAG, "onLikeUp: " + isUp);
+//        Log.e(TAG, "onLikeUp: " + isUp);
         mTextScrollLength = -(mViewHeight + mTextHeight) / 2;
         mNewTextY = -(mTextHeight + mViewHeight) / 2;
         if (isUp) {
@@ -115,7 +115,7 @@ public class LikeCountView extends View implements LikeClickListener {
             }
             isAdd = !isAdd;
             setTextString(count);
-            Log.e(TAG, "onLikeUp: un=" + mUnChangingStr.toString() + " old=" + mOldStr + " new=" + mNewStr);
+//            Log.e(TAG, "onLikeUp: un=" + mUnChangingStr.toString() + " old=" + mOldStr + " new=" + mNewStr);
             mTextAnim = ObjectAnimator.ofFloat(this, "textScrollY", 0.0f, mTextScrollLength);
             mTextAnim.setDuration(SCROLL_DURATION);
             mTextAnim.start();

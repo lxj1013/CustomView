@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LikeView">
+        <attr name="liked_src" format="reference" />
+        <attr name="liked_shining_src" format="reference" />
+        <attr name="un_liked_src" format="reference" />
+    </declare-styleable>
+</resources>
