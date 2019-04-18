@@ -24,16 +24,22 @@ public class CustomView extends View {
     public CustomView(Context context) {
         super(context);
         this.mCurrentContext = context;
+        init(null, 0);
     }
 
     public CustomView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.mCurrentContext = context;
+        init(attrs, 0);
     }
 
     public CustomView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.mCurrentContext = context;
+        init(attrs, defStyleAttr);
+    }
+
+    protected void init(AttributeSet attrs, int defStyle) {
     }
 
     @Override

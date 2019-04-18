@@ -23,6 +23,12 @@
             android:layout_height="wrap_content"
             android:text="@string/ji_ke_like_str" />
 
+        <Button
+            android:id="@+id/xiao_mi_steps_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/xiao_mi_steps_str" />
+
     </LinearLayout>
 
 </ScrollView>

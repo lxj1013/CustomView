@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button mDrawTextTestBtn;
     private Button mJKLikeBtn;
+    private Button mXiaoMiStepsBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +29,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mDrawTextTestBtn = findViewById(R.id.draw_text_text_btn);
         mJKLikeBtn = findViewById(R.id.ji_ke_like_btn);
+        mXiaoMiStepsBtn = findViewById(R.id.xiao_mi_steps_btn);
 
         mDrawTextTestBtn.setOnClickListener(this);
         mJKLikeBtn.setOnClickListener(this);
+        mXiaoMiStepsBtn.setOnClickListener(this);
     }
 
     @Override

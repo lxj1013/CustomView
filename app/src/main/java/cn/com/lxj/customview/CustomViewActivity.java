@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import cn.com.lxj.customview.fragment.DrawTextTestFragment;
 import cn.com.lxj.customview.fragment.JiKeLikeFragment;
+import cn.com.lxj.customview.fragment.MiFitStepsFragment;
 
 import static cn.com.lxj.customview.MainActivity.CUSTOM_VIEW_ID;
 
@@ -29,6 +30,9 @@ public class CustomViewActivity extends AppCompatActivity {
                 break;
             case R.id.ji_ke_like_btn:
                 replaceFragment(new JiKeLikeFragment());
+                break;
+            case R.id.xiao_mi_steps_btn:
+                replaceFragment(new MiFitStepsFragment());
                 break;
             default:
                 break;

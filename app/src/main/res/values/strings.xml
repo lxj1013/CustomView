@@ -2,6 +2,10 @@
     <string name="app_name">CustomView</string>
 
     <string name="draw_text_test" translatable="false">drawTextTest</string>
+    <string name="start_str" translatable="false">Start</string>
+    <string name="stop_str" translatable="false">Stop</string>
     <string name="ji_ke_like_str">jiKeLike</string>
-    <string name="like_ok_str">Ok</string>
+    <string name="ji_ke_like_ok_str">OK</string>
+    <string name="xiao_mi_steps_str">MiFit</string>
+
 </resources>
